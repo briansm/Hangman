@@ -1,0 +1,7 @@
+C:\Users\Dell E5420\Documents\SEMESTRES\1S2018\Lenguajes\Proyecto\Proyecto\bin\Debug\Proyecto.exe
+C:\Users\Dell E5420\Documents\SEMESTRES\1S2018\Lenguajes\Proyecto\Proyecto\bin\Debug\Proyecto.pdb
+C:\Users\Dell E5420\Documents\SEMESTRES\1S2018\Lenguajes\Proyecto\Proyecto\obj\x86\Debug\Proyecto.Form1.resources
+C:\Users\Dell E5420\Documents\SEMESTRES\1S2018\Lenguajes\Proyecto\Proyecto\obj\x86\Debug\Proyecto.Properties.Resources.resources
+C:\Users\Dell E5420\Documents\SEMESTRES\1S2018\Lenguajes\Proyecto\Proyecto\obj\x86\Debug\Proyecto.csproj.GenerateResource.Cache
+C:\Users\Dell E5420\Documents\SEMESTRES\1S2018\Lenguajes\Proyecto\Proyecto\obj\x86\Debug\Proyecto.exe
+C:\Users\Dell E5420\Documents\SEMESTRES\1S2018\Lenguajes\Proyecto\Proyecto\obj\x86\Debug\Proyecto.pdb

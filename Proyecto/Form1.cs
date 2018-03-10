@@ -19,7 +19,7 @@ namespace Proyecto
         private void bt_cargar_Click(object sender, EventArgs e)
         {
             OpenFileDialog abrirA = new OpenFileDialog();
-            abrirA.Filter="*|.lfp";
+            abrirA.Filter="|*.lfp";
             if(abrirA.ShowDialog()==System.Windows.Forms.DialogResult.OK){
                 StreamReader lectura = new StreamReader(abrirA.FileName);
                 String arch = lectura.ReadToEnd();
