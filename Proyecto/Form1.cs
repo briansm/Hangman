@@ -14,8 +14,9 @@ namespace Proyecto
         public Form1()
         {
             InitializeComponent();
+            
         }
-
+        Analizador lex = new Analizador();
         private void bt_cargar_Click(object sender, EventArgs e)
         {
             OpenFileDialog abrirA = new OpenFileDialog();
@@ -26,5 +27,12 @@ namespace Proyecto
                 rt_entrada.Text = arch;
             }
         }
+
+        private void bt_analizar_Click(object sender, EventArgs e)
+        {
+            lex.lexico(rt_entrada.Text);
+        }
+
+        
     }
 }

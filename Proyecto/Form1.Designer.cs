@@ -35,17 +35,19 @@
             // 
             // rt_entrada
             // 
-            this.rt_entrada.Location = new System.Drawing.Point(32, 27);
+            this.rt_entrada.Location = new System.Drawing.Point(24, 22);
+            this.rt_entrada.Margin = new System.Windows.Forms.Padding(2);
             this.rt_entrada.Name = "rt_entrada";
-            this.rt_entrada.Size = new System.Drawing.Size(515, 335);
+            this.rt_entrada.Size = new System.Drawing.Size(387, 273);
             this.rt_entrada.TabIndex = 0;
             this.rt_entrada.Text = "";
             // 
             // bt_cargar
             // 
-            this.bt_cargar.Location = new System.Drawing.Point(604, 69);
+            this.bt_cargar.Location = new System.Drawing.Point(453, 56);
+            this.bt_cargar.Margin = new System.Windows.Forms.Padding(2);
             this.bt_cargar.Name = "bt_cargar";
-            this.bt_cargar.Size = new System.Drawing.Size(75, 23);
+            this.bt_cargar.Size = new System.Drawing.Size(56, 19);
             this.bt_cargar.TabIndex = 1;
             this.bt_cargar.Text = "Cargar";
             this.bt_cargar.UseVisualStyleBackColor = true;
@@ -53,21 +55,24 @@
             // 
             // bt_analizar
             // 
-            this.bt_analizar.Location = new System.Drawing.Point(604, 118);
+            this.bt_analizar.Location = new System.Drawing.Point(453, 96);
+            this.bt_analizar.Margin = new System.Windows.Forms.Padding(2);
             this.bt_analizar.Name = "bt_analizar";
-            this.bt_analizar.Size = new System.Drawing.Size(75, 23);
+            this.bt_analizar.Size = new System.Drawing.Size(56, 19);
             this.bt_analizar.TabIndex = 2;
             this.bt_analizar.Text = "Analizar";
             this.bt_analizar.UseVisualStyleBackColor = true;
+            this.bt_analizar.Click += new System.EventHandler(this.bt_analizar_Click);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(808, 414);
+            this.ClientSize = new System.Drawing.Size(606, 336);
             this.Controls.Add(this.bt_analizar);
             this.Controls.Add(this.bt_cargar);
             this.Controls.Add(this.rt_entrada);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Hangman";
             this.ResumeLayout(false);
@@ -76,9 +81,9 @@
 
         #endregion
 
-        private System.Windows.Forms.RichTextBox rt_entrada;
         private System.Windows.Forms.Button bt_cargar;
         private System.Windows.Forms.Button bt_analizar;
+        public System.Windows.Forms.RichTextBox rt_entrada;
     }
 }
 
