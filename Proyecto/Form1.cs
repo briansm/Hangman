@@ -31,6 +31,7 @@ namespace Proyecto
         private void bt_analizar_Click(object sender, EventArgs e)
         {
             lex.lexico(rt_entrada.Text);
+            lex.Archivo();
         }
 
         

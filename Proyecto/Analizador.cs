@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
 namespace Proyecto
 {
     class Analizador
     {
         int state = 0;
         string lexema = "";
+//------------------------------Metodo analizar-------------------------------------
         public string lexico(string entrada)
         {
 
@@ -198,5 +200,72 @@ namespace Proyecto
             //---------------------Fin For---------------------------------------------------------
             return lexema;
         }
+//-----------------------------------Metodo Crear Archivo--------------------------------------
+        public void Archivo() {
+            TextWriter archivo = new StreamWriter("Simbolos.html");
+            String html = "<html>\n"
+                 +"<head>\n"
+                +"<style type=\"text/css\">\n" //_____________________________style de css__________________________________________
+                +"table {\n" +
+                "	font-family: verdana,arial,sans-serif;\n" +
+                "	font-size:11px;\n" +
+                "	color:#333333;\n" +
+                "	border-width: 1px;\n" +
+                "	border-color: #666666;\n" +
+                "	border-collapse: collapse;\n" +
+                "	width: 100%;\n" +
+                "}\n"
+                +" th {\n" +
+                "	border-width: 1px;\n" +
+                "	padding: 8px;\n" +
+                "	border-style: solid;\n" +
+                "	background-color: #1DFF50;\n" +
+                "	color: white;\n" +
+                "}\n" +
+                " td {\n" +
+                "	border-width: 1px;\n" +
+                "	padding: 8px;\n" +
+                "	border-style: solid;\n" +
+                "	border-color: #666666;\n" +
+                "	background-color: #ffffff;\n" +
+                "}\n" +
+                " tr:nth-child(even){background-color: #f2f2f2}\n"
+                +"</style>\n"
+                +"<meta charset=\"UTF-8\">\n"
+                +"<title>Reporte tokens</title>\n"
+                +"</head\n>"
+                +"<body background=\"\\Reportes\\r3.jpg\">"
+                +"<font color=\"Olive\" face=\"Comic Sans MS,arial\">"
+                +"<h3>Lista de tokens</h3>"
+                +"</font>"
+                +"<table>\n"
+                +"<tr>\n"
+                    +"<th>No.</th>\n"
+                    +"<th>Lexema</th>\n"
+                    +"<th>Componente léxico</th>\n"
+                    +"<th>No. línea</th>\n"
+                    +"<th>No. columna</th>\n"
+                +"</tr>\n";
+                
+            
+               
+                    html+="<tr>\n"
+                            +"<td>"+"Simbolo1"+"</td>\n"
+                            +"<td>"+"Simbolo2"+"</td>\n"
+                            +"<td>"+"1"+"</td>\n"
+                            +"<td>"+"2"+"</td>\n"
+                            +"<td>"+"3"+"</td>\n"
+                        +"</tr>\n";
+//                    System.out.println(html);
+              
+                
+            html+="</table>\n "
+                + "</body>\n "
+                + "</html>";
+            archivo.WriteLine(html);
+            archivo.Close();
+            MessageBox.Show("Archivo Creado");
+        }
+
     }
 }
