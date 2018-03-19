@@ -4,12 +4,41 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using System.Collections;
+
 namespace Proyecto
 {
     class Analizador
     {
         int state = 0;
         string lexema = "";
+        int num = 0;
+        int numerr = 0;
+        int fila = 1;
+        int columna=0;
+        
+        public List<Datos> arregloToken = new List<Datos>();
+        public List<Datos> arregloError = new List<Datos>();
+       
+        
+        public List<Datos> getArrT() {
+            return arregloToken;
+        }
+        public void setAT(List<Datos> arregloToken) {
+            this.arregloToken=arregloToken;
+        
+        }
+        public List<Datos> getArrE()
+        {
+            return arregloError;
+        }
+        public void setAE(List<Datos> arregloError)
+        {
+            this.arregloError = arregloError;
+
+        }
+        
+
 //------------------------------Metodo analizar-------------------------------------
         public string lexico(string entrada)
         {
@@ -18,7 +47,18 @@ namespace Proyecto
             Char[] cadena = texto.ToCharArray();
             for (int i = 0; i < cadena.Length; i++)
             {
+                if (cadena[i] == 10)
+                {
+                    fila++;
+                    columna = 0;
+                }
+                else
+                {
+                    columna++;
+                }
+
                 switch (state){
+                       
         //-----------------Estado 0----------------------------------------------------------------------
 
                     case 0:
@@ -32,10 +72,15 @@ namespace Proyecto
                             lexema = lexema + cadena[i];
                             state = 2;
                         }
-                        else if (cadena[i] == 42 || cadena[i] == 47 || cadena[i] == 66 || cadena[i] == 67)
+                        else if (cadena[i] == 42 || cadena[i] == 47 || cadena[i] == 34 || cadena[i] == 35)
                         {
                             lexema = lexema + cadena[i];
                             state = 3;
+                        }
+                        else
+                        {
+                            lexema = lexema + cadena[i];
+                            state = 50;
                         }
                     break;
                //-----------------Estado 1----------------------------------------------------------------------
@@ -58,6 +103,19 @@ namespace Proyecto
                             state = 4;
 
                         }
+                        else if (cadena[i] == 32 || cadena[i] == 10 || cadena[i] == 9)
+                        {
+                            
+                            num++;
+                            arregloToken.Add(new  Datos(num,lexema,tipoT(lexema),fila,columna));
+                            lexema = "";
+                            state = 0;
+
+                        }
+                        else {
+                            lexema = lexema + cadena[i];
+                            state = 100;
+                        }
                     break;
                 //-----------------Estado 2----------------------------------------------------------------------
                     case 2:
@@ -67,10 +125,27 @@ namespace Proyecto
                             state = 2;
               
                         }
+                        else if (cadena[i] == 32 || cadena[i] == 10 || cadena[i] == 9)
+                        {
+
+                            num++;
+                            arregloToken.Add(new Datos(num, lexema, tipoT(lexema), fila, columna));
+                            lexema = "";
+                            state = 0;
+
+                        }
+                        else
+                        {
+                            lexema = lexema + cadena[i];
+                            state = 100;
+                        }
                     break;
                 //-----------------Estado 3---------------------------------------------------------------------- 
                     case 3:
-                    
+                            num++;
+                            arregloToken.Add(new Datos(num, lexema, tipoT(lexema), fila, columna));
+                            lexema = "";
+                            state = 0;
                     break;
                 //-----------------Estado 4----------------------------------------------------------------------
                     case 4:
@@ -79,6 +154,11 @@ namespace Proyecto
                         lexema = lexema + cadena[i];
                         state = 5;
 
+                    }
+                    else
+                    {
+                        lexema = lexema + cadena[i];
+                        state = 100;
                     }
                     break;
                 //-----------------Estado 5---------------------------------------------------------------------- 
@@ -93,6 +173,11 @@ namespace Proyecto
                     {
                         lexema = lexema + cadena[i];
                         state = 6;
+                    }
+                    else
+                    {
+                        lexema = lexema + cadena[i];
+                        state = 100;
                     }
                     break;
                 //-----------------Estado 6----------------------------------------------------------------------
@@ -118,6 +203,11 @@ namespace Proyecto
                         lexema = lexema + cadena[i];
                         state = 8;
                     }
+                    else
+                    {
+                        lexema = lexema + cadena[i];
+                        state = 100;
+                    }
                     break;
                 //-----------------Estado 7----------------------------------------------------------------------
                     case 7:
@@ -132,6 +222,11 @@ namespace Proyecto
                         lexema = lexema + cadena[i];
                         state = 9;
                     }
+                    else
+                    {
+                        lexema = lexema + cadena[i];
+                        state = 100;
+                    }
                     
                     break;
                 //-----------------Estado 8----------------------------------------------------------------------
@@ -141,6 +236,11 @@ namespace Proyecto
                         lexema = lexema + cadena[i];
                         state = 10;
 
+                    }
+                    else
+                    {
+                        lexema = lexema + cadena[i];
+                        state = 100;
                     }
 
                     break;
@@ -167,6 +267,11 @@ namespace Proyecto
                         lexema = lexema + cadena[i];
                         state = 8;
                     }
+                    else
+                    {
+                        lexema = lexema + cadena[i];
+                        state = 100;
+                    }
                     break;
                 //-----------------Estado 10----------------------------------------------------------------------
                     case 10:
@@ -175,6 +280,20 @@ namespace Proyecto
                         lexema = lexema + cadena[i];
                         state = 10;
 
+                    }
+                    else if (cadena[i] == 32 || cadena[i] == 10 || cadena[i] == 9)
+                    {
+
+                        num++;
+                        arregloToken.Add(new Datos(num, lexema, tipoT(lexema), fila, columna));
+                        lexema = "";
+                        state = 0;
+
+                    }
+                    else
+                    {
+                        lexema = lexema + cadena[i];
+                        state = 100;
                     }
                     break;
                 //-----------------Estado 11----------------------------------------------------------------------
@@ -191,6 +310,38 @@ namespace Proyecto
                         state = 11;
 
                     }
+                    else if (cadena[i] == 32 || cadena[i] == 10 || cadena[i] == 9)
+                    {
+
+                        num++;
+                        arregloToken.Add(new Datos(num, lexema, tipoT(lexema), fila, columna));
+                        lexema = "";
+                        state = 0;
+
+                    }
+                    else
+                    {
+                        lexema = lexema + cadena[i];
+                        state = 100;
+                    }
+               
+                    break;
+         //-----------------Estado Error----------------------------------------------------------------------
+                    case 100:
+                    if (cadena[i] == 32 || cadena[i] == 10 || cadena[i] == 9)
+                    {
+
+                        numerr++;
+                        arregloError.Add(new Datos(numerr,lexema,fila,columna));
+                        lexema = "";
+                        state = 0;
+
+                    }
+                    else
+                    {
+                        lexema = lexema + cadena[i];
+                        state = 100;
+                    }
                
                     break;
                 }       
@@ -201,70 +352,124 @@ namespace Proyecto
             return lexema;
         }
 //-----------------------------------Metodo Crear Archivo--------------------------------------
-        public void Archivo() {
-            TextWriter archivo = new StreamWriter("Simbolos.html");
-            String html = "<html>\n"
-                 +"<head>\n"
-                +"<style type=\"text/css\">\n" //_____________________________style de css__________________________________________
-                +"table {\n" +
-                "	font-family: verdana,arial,sans-serif;\n" +
-                "	font-size:11px;\n" +
-                "	color:#333333;\n" +
-                "	border-width: 1px;\n" +
-                "	border-color: #666666;\n" +
-                "	border-collapse: collapse;\n" +
-                "	width: 100%;\n" +
-                "}\n"
-                +" th {\n" +
-                "	border-width: 1px;\n" +
-                "	padding: 8px;\n" +
-                "	border-style: solid;\n" +
-                "	background-color: #1DFF50;\n" +
-                "	color: white;\n" +
-                "}\n" +
-                " td {\n" +
-                "	border-width: 1px;\n" +
-                "	padding: 8px;\n" +
-                "	border-style: solid;\n" +
-                "	border-color: #666666;\n" +
-                "	background-color: #ffffff;\n" +
-                "}\n" +
-                " tr:nth-child(even){background-color: #f2f2f2}\n"
-                +"</style>\n"
-                +"<meta charset=\"UTF-8\">\n"
-                +"<title>Reporte tokens</title>\n"
-                +"</head\n>"
-                +"<body background=\"\\Reportes\\r3.jpg\">"
-                +"<font color=\"Olive\" face=\"Comic Sans MS,arial\">"
-                +"<h3>Lista de tokens</h3>"
-                +"</font>"
-                +"<table>\n"
-                +"<tr>\n"
-                    +"<th>No.</th>\n"
-                    +"<th>Lexema</th>\n"
-                    +"<th>Componente léxico</th>\n"
-                    +"<th>No. línea</th>\n"
-                    +"<th>No. columna</th>\n"
-                +"</tr>\n";
-                
-            
-               
-                    html+="<tr>\n"
-                            +"<td>"+"Simbolo1"+"</td>\n"
-                            +"<td>"+"Simbolo2"+"</td>\n"
-                            +"<td>"+"1"+"</td>\n"
-                            +"<td>"+"2"+"</td>\n"
-                            +"<td>"+"3"+"</td>\n"
-                        +"</tr>\n";
-//                    System.out.println(html);
-              
-                
-            html+="</table>\n "
-                + "</body>\n "
-                + "</html>";
-            archivo.WriteLine(html);
+        public void Archivo(string cod, string tr) {
+            string nomA="";
+            if(tr=="Simbolos"){
+                nomA = "C:\\Simbolos.html";
+            }
+            else if(tr=="Error")
+            {
+                nomA = "C:\\Error.html";
+            }
+            TextWriter archivo = new StreamWriter(nomA);
+            archivo.WriteLine(cod);
             archivo.Close();
-            MessageBox.Show("Archivo Creado");
+        }
+
+//-----------------------------------Metodo Verificar tokens--------------------------------------       
+        public string tipoT(string lexema) {
+            string tiptoken;
+            
+            switch(lexema){
+                case "Configuracion":
+                    tiptoken = "Token_Configuracion";
+                break;
+
+                case "configuracion":
+                     tiptoken = "Token_Configuracion";
+                break;
+
+                case "Juego":
+                tiptoken = "Token_Juego";
+                break;
+
+                case "Niveles":
+                tiptoken = "Token_Niveles";
+                break;
+
+                case "Tiempo":
+                tiptoken = "Token_Tiempo";
+                break;
+
+                case "Sonido":
+                tiptoken = "Token_Sonido";
+                break;
+
+                case "Ahorcado":
+                tiptoken = "Token_Ahorcado";
+                break;
+
+                case "Usuario":
+                tiptoken = "Token_Usuario";
+                break;
+
+                case "Vocabulario":
+                tiptoken = "Token_Vocabulario";
+                break;
+
+                case "Facil":
+                tiptoken = "Token_Facil";
+                break;
+
+                case "Intermedio":
+                tiptoken = "Token_Intermedio";
+                break;
+
+                case "Dificil":
+                tiptoken = "Token_Dificl";
+                break;
+
+                case "Nombre":
+                tiptoken = "Token_Nombre";
+                break;
+
+                case "Ruta":
+                tiptoken = "Token_Ruta";
+                break;
+
+                case "Idioma":
+                tiptoken = "Token_Idioma";
+                break;
+
+                case "Palabra":
+                tiptoken = "Token_Palabra";
+                break;
+
+                case "Longitud":
+                tiptoken = "Token_Longitud";
+                break;
+
+                case "Pista1":
+                tiptoken = "Token_Pista1";
+                break;
+
+                case "Pista2":
+                tiptoken = "Token_Pista2";
+                break;
+
+                case "#":
+                tiptoken = "Token_#";
+                break;
+
+                case "/":
+                tiptoken = "Token_/";
+                break;
+
+                case "*":
+                tiptoken = "Token_*";
+                break;
+
+                case " \" ":
+                tiptoken = "Token_\" ";
+                break; 
+
+                default:
+                tiptoken = "Token_texcto";
+                break;
+            }
+
+            return tiptoken;
+        
         }
 
     }

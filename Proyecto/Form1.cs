@@ -17,6 +17,7 @@ namespace Proyecto
             
         }
         Analizador lex = new Analizador();
+        Reportes rep = new Reportes();
         private void bt_cargar_Click(object sender, EventArgs e)
         {
             OpenFileDialog abrirA = new OpenFileDialog();
@@ -31,7 +32,8 @@ namespace Proyecto
         private void bt_analizar_Click(object sender, EventArgs e)
         {
             lex.lexico(rt_entrada.Text);
-            lex.Archivo();
+            rep.CrearRT(lex.getArrT());
+            rep.CrearRE(lex.getArrE());
         }
 
         

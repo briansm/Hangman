@@ -17,14 +17,14 @@ namespace Proyecto
         string Terror = "Error Lexico, TOken No reconocido";
            
 
-            public  void datosToken(int num,string lexe,string tokn, int f, int c){
+            public Datos(int num,string lexe,string tokn, int f, int c){
                 this.numero = num;
                 this.lexi = lexe;
                 this.token = tokn;
                 this.fila = f;
                 this.columna = c;
             }
-            public void datosError(int num, string error, int f, int c)
+            public Datos(int num, string error, int f, int c)
             {
                 this.numero = num;
                 this.error = error;
