@@ -72,10 +72,16 @@ namespace Proyecto
                             lexema = lexema + cadena[i];
                             state = 2;
                         }
-                        else if (cadena[i] == 42 || cadena[i] == 47 || cadena[i] == 34 || cadena[i] == 35)
+                        else if (cadena[i] == 42 || cadena[i] == 47 || cadena[i] == 34 || cadena[i] == 35 ||  cadena[i] == 61)
                         {
                             lexema = lexema + cadena[i];
                             state = 3;
+                        }
+                        else if (cadena[i] == 32 || cadena[i] == 10 || cadena[i] == 9)
+                        {
+
+                            cadena[i] = cadena[i + 1];
+
                         }
                         else
                         {
@@ -105,7 +111,7 @@ namespace Proyecto
                         }
                         else if (cadena[i] == 32 || cadena[i] == 10 || cadena[i] == 9)
                         {
-                            
+                            cadena[i] = cadena[i + 1];
                             num++;
                             arregloToken.Add(new  Datos(num,lexema,tipoT(lexema),fila,columna));
                             lexema = "";
@@ -123,6 +129,8 @@ namespace Proyecto
                         {
                             lexema = lexema + cadena[i];
                             state = 2;
+
+                            
               
                         }
                         else if (cadena[i] == 32 || cadena[i] == 10 || cadena[i] == 9)
@@ -457,6 +465,10 @@ namespace Proyecto
 
                 case "*":
                 tiptoken = "Token_*";
+                break;
+
+                case "=":
+                tiptoken = "Token_=";
                 break;
 
                // case " :

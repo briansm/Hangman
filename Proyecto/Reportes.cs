@@ -136,7 +136,7 @@ namespace Proyecto
             {
                 html2 += "<tr>\n"
                         + "<td>" + ((Datos)lise[i]).getNumero() + "</td>\n"
-                        + "<td>" + ((Datos)lise[i]).getLexi() + "</td>\n"
+                        + "<td>" + ((Datos)lise[i]).getError() + "</td>\n"
                         + "<td>" + ((Datos)lise[i]).getFila() + "</td>\n"
                         + "<td>" + ((Datos)lise[i]).getColum() + "</td>\n"
                         + "<td>" + ((Datos)lise[i]).getTerror() + "</td>\n"
