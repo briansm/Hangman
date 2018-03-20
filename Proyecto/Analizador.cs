@@ -72,10 +72,40 @@ namespace Proyecto
                             lexema = lexema + cadena[i];
                             state = 2;
                         }
-                        else if (cadena[i] == 42 || cadena[i] == 47 || cadena[i] == 34 || cadena[i] == 35 ||  cadena[i] == 61)
+                        else if (cadena[i] == 61)
                         {
                             lexema = lexema + cadena[i];
                             state = 3;
+
+
+                        }
+                        else if (cadena[i] == 35)
+                        {
+                            lexema = lexema + cadena[i];
+                            state = 3;
+
+
+                        }
+                        else if (cadena[i] == 34)
+                        {
+                            lexema = lexema + cadena[i];
+                            state = 3;
+
+
+                        }
+                        else if (cadena[i] == 47 )
+                        {
+                            lexema = lexema + cadena[i];
+                            state = 12;
+                            
+
+                        }
+                        else if (cadena[i] == 42)
+                        {
+                            lexema = lexema + cadena[i];
+                            state = 15;
+
+
                         }
                         else if (cadena[i] == 32 || cadena[i] == 10 || cadena[i] == 9)
                         {
@@ -111,7 +141,7 @@ namespace Proyecto
                         }
                         else if (cadena[i] == 32 || cadena[i] == 10 || cadena[i] == 9)
                         {
-                            cadena[i] = cadena[i + 1];
+                            
                             num++;
                             arregloToken.Add(new  Datos(num,lexema,tipoT(lexema),fila,columna));
                             lexema = "";
@@ -150,10 +180,14 @@ namespace Proyecto
                     break;
                 //-----------------Estado 3---------------------------------------------------------------------- 
                     case 3:
-                            num++;
-                            arregloToken.Add(new Datos(num, lexema, tipoT(lexema), fila, columna));
-                            lexema = "";
-                            state = 0;
+                    
+                        num++;
+                        arregloToken.Add(new Datos(num, lexema, "Token_Simbolo", fila, columna));
+                        state = 0;
+                        lexema = "";
+                    
+                            
+                            
                     break;
                 //-----------------Estado 4----------------------------------------------------------------------
                     case 4:
@@ -289,7 +323,7 @@ namespace Proyecto
                         state = 10;
 
                     }
-                    else if (cadena[i] == 32 || cadena[i] == 10 || cadena[i] == 9)
+                    else if (cadena[i] == 32 || cadena[i] == 10 || cadena[i] == 9 || cadena[i] == 34)
                     {
 
                         num++;
@@ -333,6 +367,86 @@ namespace Proyecto
                         state = 100;
                     }
                
+                    break;
+          //-----------------Estado 12----------------------------------------------------------------------
+                    case 12:
+
+                    if (cadena[i] == 42)
+                    {
+                        lexema = lexema + cadena[i];
+                        state = 13;
+                    }
+                    else 
+                    {
+
+                        lexema = lexema + cadena[i];
+                        state = 100;
+                    }
+
+
+
+                    break;
+          //-----------------Estado 13----------------------------------------------------------------------
+                    case 13:
+
+                    if (cadena[i] == 42)
+                    {
+                        lexema = lexema + cadena[i];
+                        state = 14;
+                    }
+                    else
+                    {
+
+                        lexema = lexema + cadena[i];
+                        state = 100;
+                    }
+
+                    break;
+         //-----------------Estado 14----------------------------------------------------------------------
+                    case 14: 
+                        num++;
+                        arregloToken.Add(new Datos(num, lexema, tipoT(lexema), fila, columna));
+                        state = 0;
+                        lexema = "";
+                    break;
+        //-----------------Estado 15----------------------------------------------------------------------
+                    case 15:
+
+                    if (cadena[i] == 42)
+                    {
+                        lexema = lexema + cadena[i];
+                        state = 16;
+                    }
+                    else
+                    {
+
+                        lexema = lexema + cadena[i];
+                        state = 100;
+                    }
+
+                    break;
+            //-----------------Estado 16----------------------------------------------------------------------
+                    case 16:
+
+                    if (cadena[i] == 47)
+                    {
+                        lexema = lexema + cadena[i];
+                        state = 17;
+                    }
+                    else
+                    {
+
+                        lexema = lexema + cadena[i];
+                        state = 100;
+                    }
+
+                    break;
+                 //-----------------Estado 14----------------------------------------------------------------------
+                    case 17:
+                    num++;
+                    arregloToken.Add(new Datos(num, lexema, tipoT(lexema), fila, columna));
+                    state = 0;
+                    lexema = "";
                     break;
          //-----------------Estado Error----------------------------------------------------------------------
                     case 100:
@@ -459,12 +573,12 @@ namespace Proyecto
                 tiptoken = "Token_#";
                 break;
 
-                case "/":
-                tiptoken = "Token_/";
+                case "/**":
+                tiptoken = "Token_/**";
                 break;
 
-                case "*":
-                tiptoken = "Token_*";
+                case "**/":
+                tiptoken = "Token_**/";
                 break;
 
                 case "=":

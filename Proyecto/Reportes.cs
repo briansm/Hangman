@@ -115,7 +115,7 @@ namespace Proyecto
                 " tr:nth-child(even){background-color: #f2f2f2}\n"
                 + "</style>\n"
                 + "<meta charset=\"UTF-8\">\n"
-                + "<title>Reporte tokens</title>\n"
+                + "<title>Reporte Errores</title>\n"
                 + "</head\n>"
                 + "<body background=\"\\Reportes\\r3.jpg\">"
                 + "<font color=\"Olive\" face=\"Comic Sans MS,arial\">"
