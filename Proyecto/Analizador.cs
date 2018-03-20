@@ -403,11 +403,14 @@ namespace Proyecto
 
                     break;
          //-----------------Estado 14----------------------------------------------------------------------
-                    case 14: 
+                    case 14:
+                    
                         num++;
                         arregloToken.Add(new Datos(num, lexema, tipoT(lexema), fila, columna));
                         state = 0;
                         lexema = "";
+                    
+                        
                     break;
         //-----------------Estado 15----------------------------------------------------------------------
                     case 15:
