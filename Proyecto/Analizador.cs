@@ -317,13 +317,13 @@ namespace Proyecto
                     break;
                 //-----------------Estado 10----------------------------------------------------------------------
                     case 10:
-                    if (Char.IsLetter(cadena[i]))
+                    if (Char.IsLetter(cadena[i]) || Char.IsDigit(cadena[i]))
                     {
                         lexema = lexema + cadena[i];
                         state = 10;
 
                     }
-                    else if (cadena[i] == 32 || cadena[i] == 10 || cadena[i] == 9 || cadena[i] == 34)
+                    else if (cadena[i] == 32 || cadena[i] == 10 || cadena[i] == 9)
                     {
 
                         num++;
@@ -447,8 +447,9 @@ namespace Proyecto
                  //-----------------Estado 14----------------------------------------------------------------------
                     case 17:
                     num++;
-                    arregloToken.Add(new Datos(num, lexema, tipoT(lexema), fila, columna));
                     state = 0;
+                    arregloToken.Add(new Datos(num, lexema, tipoT(lexema), fila, columna));
+                    
                     lexema = "";
                     break;
          //-----------------Estado Error----------------------------------------------------------------------
@@ -549,8 +550,9 @@ namespace Proyecto
                 break;
 
                 case "Ruta":
-                tiptoken = "Token_Ruta";
+                tiptoken = "Token_Reservada_Ruta";
                 break;
+                
 
                 case "Idioma":
                 tiptoken = "Token_Idioma";
