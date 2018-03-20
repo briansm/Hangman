@@ -80,7 +80,7 @@ namespace Proyecto
                         else
                         {
                             lexema = lexema + cadena[i];
-                            state = 50;
+                            state = 100;
                         }
                     break;
                //-----------------Estado 1----------------------------------------------------------------------
@@ -129,7 +129,7 @@ namespace Proyecto
                         {
 
                             num++;
-                            arregloToken.Add(new Datos(num, lexema, tipoT(lexema), fila, columna));
+                            arregloToken.Add(new Datos(num, lexema, "Token_Digito", fila, columna));
                             lexema = "";
                             state = 0;
 
@@ -285,7 +285,7 @@ namespace Proyecto
                     {
 
                         num++;
-                        arregloToken.Add(new Datos(num, lexema, tipoT(lexema), fila, columna));
+                        arregloToken.Add(new Datos(num, lexema, "Token_Ruta", fila, columna));
                         lexema = "";
                         state = 0;
 
@@ -459,12 +459,12 @@ namespace Proyecto
                 tiptoken = "Token_*";
                 break;
 
-                case " \" ":
-                tiptoken = "Token_\" ";
-                break; 
+               // case " :
+                //tiptoken = "Token_Comillas";
+                //break; 
 
                 default:
-                tiptoken = "Token_texcto";
+                tiptoken = "Token_texto";
                 break;
             }
 

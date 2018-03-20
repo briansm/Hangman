@@ -119,7 +119,7 @@ namespace Proyecto
                 + "</head\n>"
                 + "<body background=\"\\Reportes\\r3.jpg\">"
                 + "<font color=\"Olive\" face=\"Comic Sans MS,arial\">"
-                + "<h3>Lista de tokens</h3>"
+                + "<h3>Lista de Errores</h3>"
                 + "</font>"
                 + "<table>\n"
                 + "<tr>\n"
